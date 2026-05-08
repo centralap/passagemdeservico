@@ -357,7 +357,32 @@ document.querySelectorAll('.checklist .item').forEach(item=>{
 const label=item.querySelector('label').innerText.trim();
 const input=item.querySelector('input[type=number],input[type=text]');
 if(input && input.value){
-partes.push(label+': '+input.value);
+let nome = label.toUpperCase();
+let quantidade = parseInt(input.value);
+
+if(quantidade > 1){
+if(nome === 'TORNOZELEIRA ELETRÔNICA') nome = 'TORNOZELEIRAS ELETRÔNICAS';
+else if(nome === 'CARREGADOR (TNZ)') nome = 'CARREGADORES (TNZ)';
+else if(nome === 'PULSEIRAS (TNZ)') nome = 'PULSEIRAS (TNZ)';
+else if(nome === 'TRAVA DA PULSEIRA') nome = 'TRAVAS DA PULSEIRA';
+else if(nome === 'PULSEIRAS DE TESTE') nome = 'PULSEIRAS DE TESTE';
+else if(nome === 'DPPS COMPLETOS (DISPOSITIVO + CARREGADOR)') nome = 'DPPS COMPLETOS (DISPOSITIVO + CARREGADOR)';
+else if(nome === 'CARREGADOR DPP AVULSO') nome = 'CARREGADORES DPP AVULSOS';
+else if(nome === 'SMARTPHONES COM CHIP (01 MOTOROLA + 02 REDMI)') nome = 'SMARTPHONES COM CHIP (01 MOTOROLA + 02 REDMI)';
+else if(nome === 'CARREGADOR DE CELULAR') nome = 'CARREGADORES DE CELULAR';
+else if(nome === 'GARRAFÕES DE ÁGUA') nome = 'GARRAFÕES DE ÁGUA';
+else if(nome === 'GARRAFÃO CHEIO') nome = 'GARRAFÕES CHEIOS';
+else if(nome === 'GARRAFÃO VAZIO') nome = 'GARRAFÕES VAZIOS';
+else if(nome === 'GARRAFÃO PLANTÃO') nome = 'GARRAFÕES PLANTÃO';
+else if(nome === 'GARRAFÃO ADM') nome = 'GARRAFÕES ADM';
+else if(nome === 'ALGEMAS') nome = 'ALGEMAS';
+else if(nome === 'CHAVE DE ALGEMA') nome = 'CHAVES DE ALGEMA';
+else if(nome === 'CHAVE DA SALA - ESTADO MAIOR') nome = 'CHAVES DA SALA - ESTADO MAIOR';
+else if(nome === 'BALANÇA') nome = 'BALANÇAS';
+else if(nome === 'TERMÔMETRO') nome = 'TERMÔMETROS';
+}
+
+partes.push(input.value + ' ' + nome + ';');
 }
 });
 
@@ -395,7 +420,7 @@ viaturas.push(linha + partesLinha.join(', '));
 });
 
 let texto = 'MATERIAL DISPONÍVEL NA PASSAGEM DO SERVIÇO: ';
-texto += partes.join(', ');
+texto += partes.join(' ');
 
 if(viaturas.length>0){
 texto += '\n\nVIATURAS NA PASSAGEM DO SERVIÇO: ' + viaturas.join(', ');
@@ -420,3 +445,4 @@ document.getElementById('textoFinal').value = texto;
 
 </body>
 </html>
+```
